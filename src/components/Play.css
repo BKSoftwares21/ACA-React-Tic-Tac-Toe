@@ -58,7 +58,8 @@ body {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  border: none;
+  border: 3px;
+  border-color:#4169e1;
   background-color: #4682b4;
   color: white;
   transition: background-color 0.3s;
