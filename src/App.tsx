@@ -1,13 +1,16 @@
 import React from 'react'
-import './App.css'
-import './components/Play.tsx'
+import Play from './components/Play.tsx'
 
-function App() {
+const App:React.FC = () => {
 
 
   return (
     <>
-      <Play/>
+    <div className="App">
+      <h1>Welcome to Tic-Tac-Toe</h1>
+      <Play />
+      </div>
+      
     </>
   )
 }
