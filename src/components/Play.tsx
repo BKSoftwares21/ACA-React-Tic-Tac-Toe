@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Play.css';
 
-const winningCombinations = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
 type Player = 'X' | 'O' | null;
 
+const winningCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
 const Play: React.FC = () => {
   const [board, setBoard] = useState<Player[]>(Array(9).fill(null));
@@ -33,16 +33,13 @@ const Play: React.FC = () => {
   };
 
   const handleClick = (index: number) => {
-    if (board[index]) return;
+    if (board[index] || winner) return;
 
     const newBoard = board.slice();
     newBoard[index] = player;
     setBoard(newBoard);
 
-    setPlayer(player === 'X' ? 'O' : 'X');
-  };
-
-  const newWinner = checkWinner(newBoard);
+    const newWinner = checkWinner(newBoard);
     if (newWinner) {
       setWinner(newWinner);
       navigate('/winner', { state: { winner: newWinner } });
@@ -55,7 +52,8 @@ const Play: React.FC = () => {
   };
 
   const renderCell = (index: number) => (
-    className={`cell ${board[index]}`}
+    <div
+      className={`cell ${board[index]}`}
       onClick={() => handleClick(index)}
       key={index}
     >
