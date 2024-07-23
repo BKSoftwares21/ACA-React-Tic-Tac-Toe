@@ -1,8 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './Play.css';
+
 
 const WinnerPage: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { winner, draw } = location.state as { winner?: 'X' | 'O'; draw?: boolean };
 
   return (
@@ -12,7 +15,7 @@ const WinnerPage: React.FC = () => {
       ) : (
         <h1>Player {winner} wins!</h1>
       )}
-      <a href="/">Play Again</a>
+      <button onClick={() => navigate('/')}>Play Again</button>
     </div>
   );
 };
